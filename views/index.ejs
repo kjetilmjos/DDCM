@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
-
+ <link type="text/css" rel="stylesheet" href="../static/style.css" />
+ <script src="../static/script.js"></script>
 <head>
     <title>Data Drive Condition Monitoring</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
@@ -13,10 +14,11 @@
 </head>
 
 <body>
+          <h1><span></span>Data Driven Condition Monitoring</h1>
     <div class="container">
 
         <div class="jumbotron text-center">
-            <h1><span></span>Data Driven Condition Monitoring</h1>
+            <h1><span></span>Add to DB</h1>
 
             <div>
                 <select name="projects">
@@ -26,7 +28,7 @@
             </div>
             <input type="file" accept=".xlsx,.xls" />
             <button>Validate and add to DB</button>
-            <button>Download example file</button>
+          <a href="../static/pi_data-jan2016.xlsx" download="proposed_file_name">Download example file</a>
         </div>
 
 
