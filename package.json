@@ -1,0 +1,25 @@
+
+{
+  "name": "DDCM",
+  "version": "0.0.1",
+  "description": "Data Drive Condition Monitoring",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kjetilmjos/DDCM.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kjetil Mjøs",
+  "license": "ISC",
+  "dependencies": {
+    "express" : "latest",
+    "ejs" : "latest",
+    "mongoose" : "latest",
+    "morgan": "latest",
+    "body-parser": "latest",
+    "method-override": "latest",
+    "express-session": "latest"
+    }
+}
