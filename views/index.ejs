@@ -1,26 +1,49 @@
 <!doctype html>
 <html>
+
 <head>
     <title>Data Drive Condition Monitoring</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
-        body         { padding-top:80px; }
+        body {
+            padding-top: 80px;
+        }
     </style>
 </head>
+
 <body>
-<div class="container">
+    <div class="container">
 
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span> DDCM</h1>
+        <div class="jumbotron text-center">
+            <h1><span></span>Data Driven Condition Monitoring</h1>
 
-        <p>dd</p>
+            <div>
+                <select name="projects">
+                    <option value="anone">Select project</option>
+                    <option value="PN1042">Edvard Grieg - PN1042</option>
+                </select>
+            </div>
+            <input type="file" accept=".xlsx,.xls" />
+            <button>Validate and add to DB</button>
+            <button>Download example file</button>
+        </div>
 
 
     </div>
 
 
+    <div class="container">
+      <div class="jumbotron text-center">
+          <h1><span></span>Query DB</h1>
+Upload config file<input type="file" accept=".json" />
+Select folder for storing output<input type="file" accept=".txt" />
+          <div>
+    </div>
 
-</div>
+
+
+
 </body>
+
 </html>
