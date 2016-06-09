@@ -5,10 +5,13 @@ from datetime import datetime
 from datetime import timedelta
 import dateutil.parser
 import json
+import glob, os
+import zipfile
 
 TAG = []
 reference_date = []
 Date_for_file = []
+files = []
 
 with open('CONFIG_query.json', 'r') as f:
     config = json.load(f)
@@ -264,3 +267,10 @@ for date_loop in reference_date:
 print("Complete!")
 with open("Query complete.txt", "w") as text_file:
     text_file.write("Finished searching through database...\n")
+os.chdir("./")
+for file in glob.glob("*.txt"):
+    files.append(file)
+
+with zipfile.ZipFile('../public/DDCM_output.zip', 'w') as myzip:
+    for filer in files:
+        myzip.write(filer)
