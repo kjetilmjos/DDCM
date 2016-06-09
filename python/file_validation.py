@@ -2,7 +2,7 @@ from openpyxl import load_workbook
 from dateutil.parser import parse
 import datetime
 
-wb2 = load_workbook('../upload/excel_export.xlsx')
+wb2 = load_workbook('./upload/excel_export.xlsx')
 ws1 = wb2.active
 
 allowed_columns = 36
