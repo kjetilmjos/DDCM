@@ -1,15 +1,20 @@
-var data = {a:1, b:2, c:3};
-var json = JSON.stringify(data);
-var blob = new Blob([json], {type: "application/json"});
-var url  = URL.createObjectURL(blob);
 
-var a = document.createElement('a');
-a.download    = "backup.json";
-a.href        = url;
-a.textContent = "Download backup.json";
+//function validate() {
 
-document.getElementById('content').appendChild(a);
+  //  var fullPath = document.getElementById('excel_upload_file').value;
+//    alert(fullPath);
+//    if (fullPath) {
+  //      var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+    //    var filename = fullPath.substring(startIndex);
+      //  if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+        //    filename = filename.substring(1);
+        //}
+        //alert(filename);
+//    }
 
-function test(){
-  alert("s");
-}
+
+
+
+
+
+//}
