@@ -20,6 +20,8 @@
     "morgan": "latest",
     "body-parser": "latest",
     "method-override": "latest",
+    "multer": "latest",
+    "python-shell": "latest",
     "express-session": "latest"
     }
 }

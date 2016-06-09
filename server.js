@@ -12,6 +12,8 @@ var morgan       = require('morgan');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
+
+
 //var configDB = require('./config/database.js');
 
 app.use('/static', express.static('public'));
