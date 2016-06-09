@@ -2,10 +2,12 @@
 <html>
  <link type="text/css" rel="stylesheet" href="../static/style.css" />
  <script src="../static/script.js"></script>
+ <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <head>
     <title>Data Drive Condition Monitoring</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
     <style>
         body {
             padding-top: 80px;
@@ -15,6 +17,10 @@
 
 <body>
           <h1><span></span>Data Driven Condition Monitoring</h1>
+
+
+
+
     <div class="container">
 
         <div class="jumbotron text-center">
@@ -26,20 +32,37 @@
                     <option value="PN1042">Edvard Grieg - PN1042</option>
                 </select>
             </div>
-            <input type="file" accept=".xlsx,.xls" />
-            <button>Validate and add to DB</button>
+              <input name ="up_file" id ="up_file" type="file" accept=".xlsx" />
+            <br>
           <a href="../static/pi_data-jan2016.xlsx" download="Export template">Download example file</a>
         </div>
 
-
+        <script>
+        $('#up_file').change(function (e){
+        var file = e.target.files[0];
+        var formData = new FormData();
+        formData.append('up_file', file);
+        return $.ajax({
+               url : '/data-export',
+               type : 'POST',
+               data : formData,
+               processData: false,  // tell jQuery not to process the data
+               contentType: false,  // tell jQuery not to set contentType
+               success : function(data) {
+                   console.log(data);
+               }
+        });
+         }
+        )
+        </script>
     </div>
 
 
     <div class="container">
       <div class="jumbotron text-center">
           <h1><span></span>Query DB</h1>
-Upload config file<input type="file" accept=".json" />
-Select folder for storing output<input type="file" accept=".txt" />
+Upload<input type="file" accept=".json" />
+Output<input type="file" accept=".txt" />
           <div>
     </div>
 
