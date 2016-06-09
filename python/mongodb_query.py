@@ -22,6 +22,7 @@ for dattiser in config['dates']:
 
 MW_tag = config["MW_tag"]
 MW_hysteres = config["MW_hysteres"]
+noprint_limit = config["noprint_limit"]
 # Connection to Mongo DB
 try:
     conn=pymongo.MongoClient()
@@ -77,6 +78,8 @@ for date_loop in reference_date:
             week_average = 0
         if week_average != 0:
             week_value_dev = reference_entry_value - week_average
+            if abs(week_value_dev) < noprint_limit:
+                no_print = 1
         else:
             week_value_dev = 0
         week_sample = len(list_week)
@@ -104,6 +107,8 @@ for date_loop in reference_date:
             month_average = 0
         if month_average != 0:
             month_value_dev = reference_entry_value - month_average
+            if abs(month_value_dev) < noprint_limit:
+                no_print = 1
         else:
             month_value_dev = 0
         month_sample = len(list_month)
@@ -131,6 +136,8 @@ for date_loop in reference_date:
             six_months_average = 0
         if six_months_average != 0:
             six_months_value_dev = reference_entry_value - six_months_average
+            if abs(six_months_value_dev) < noprint_limit:
+                no_print = 1
         else:
             six_months_value_dev = 0
         six_months_sample = len(list_six_months)
@@ -158,6 +165,8 @@ for date_loop in reference_date:
             year_average = 0
         if year_average != 0:
             year_value_dev = reference_entry_value - year_average
+            if abs(year_value_dev) < noprint_limit:
+                no_print = 1
         else:
             year_value_dev = 0
         year_sample = len(list_year)
@@ -185,68 +194,73 @@ for date_loop in reference_date:
             life_average = 0
         if life_average != 0:
             life_value_dev = reference_entry_value - life_average
+            if abs(life_value_dev) < noprint_limit:
+                no_print = 1
         else:
             life_value_dev = 0
         life_sample = len(list_lifespan)
         #--------------------------/Lifespan query-------------------------------#
+        if no_print == 0:
 
-        with open("DDCM -" + tag_loop + "-[" + Date_for_file[date_file_loope] + "].txt", "w") as text_file:
-            text_file.write("----------------------------Data Driven Condition Monitoring [DDCM]----------------------------\n")
-            text_file.write("\n")
+            with open("DDCM -" + tag_loop + "-[" + Date_for_file[date_file_loope] + "].txt", "w") as text_file:
+                text_file.write("----------------------------Data Driven Condition Monitoring [DDCM]----------------------------\n")
+                text_file.write("\n")
 
-            text_file.write("-------------------------------------\n")
-            text_file.write("Reference sample\n")
-            text_file.write("Tag: %s\n" % reference_entry_tag)
-            text_file.write("Description: %s\n" % reference_entry_description)
-            text_file.write("Unit: %s\n" % reference_entry_unit)
-            text_file.write("Timestamp: %s\n" % reference_entry_timestamp)
-            text_file.write("Value: %g\n" % reference_entry_value)
-            text_file.write("MW: %g\n" % reference_entry_MW)
-            text_file.write("MW Threshold +/-: %g\n" % MW_hysteres)
-            text_file.write("-------------------------------------\n")
-            text_file.write("\n\n")
+                text_file.write("-------------------------------------\n")
+                text_file.write("Reference sample\n")
+                text_file.write("Tag: %s\n" % reference_entry_tag)
+                text_file.write("Description: %s\n" % reference_entry_description)
+                text_file.write("Unit: %s\n" % reference_entry_unit)
+                text_file.write("Timestamp: %s\n" % reference_entry_timestamp)
+                text_file.write("Value: %g\n" % reference_entry_value)
+                text_file.write("MW: %g\n" % reference_entry_MW)
+                text_file.write("MW Threshold +/-: %g\n" % MW_hysteres)
+                text_file.write("-------------------------------------\n")
+                text_file.write("\n\n")
 
-            text_file.write("-------------------------------------\n")
-            text_file.write("Compared to last week average\n")
-            text_file.write("Number of samples: %d\n" % week_sample)
-            text_file.write("Average: %g\n" % week_average)
-            text_file.write("Value deviation: %g\n" % week_value_dev)
-            text_file.write("-------------------------------------\n")
-            text_file.write("\n\n")
+                text_file.write("-------------------------------------\n")
+                text_file.write("Compared to last week average\n")
+                text_file.write("Number of samples: %d\n" % week_sample)
+                text_file.write("Average: %g\n" % week_average)
+                text_file.write("Value deviation: %g\n" % week_value_dev)
+                text_file.write("-------------------------------------\n")
+                text_file.write("\n\n")
 
-            text_file.write("-------------------------------------\n")
-            text_file.write("Compared to last month average\n")
-            text_file.write("Number of samples: %d\n" % month_sample)
-            text_file.write("Average: %g\n" % month_average)
-            text_file.write("Value deviation: %g\n" % month_value_dev)
-            text_file.write("-------------------------------------\n")
-            text_file.write("\n\n")
+                text_file.write("-------------------------------------\n")
+                text_file.write("Compared to last month average\n")
+                text_file.write("Number of samples: %d\n" % month_sample)
+                text_file.write("Average: %g\n" % month_average)
+                text_file.write("Value deviation: %g\n" % month_value_dev)
+                text_file.write("-------------------------------------\n")
+                text_file.write("\n\n")
 
-            text_file.write("-------------------------------------\n")
-            text_file.write("Compared to last six months average\n")
-            text_file.write("Number of samples: %d\n" % six_months_sample)
-            text_file.write("Average: %g\n" % six_months_average)
-            text_file.write("Value deviation: %g\n" % six_months_value_dev)
-            text_file.write("-------------------------------------\n")
-            text_file.write("\n\n")
+                text_file.write("-------------------------------------\n")
+                text_file.write("Compared to last six months average\n")
+                text_file.write("Number of samples: %d\n" % six_months_sample)
+                text_file.write("Average: %g\n" % six_months_average)
+                text_file.write("Value deviation: %g\n" % six_months_value_dev)
+                text_file.write("-------------------------------------\n")
+                text_file.write("\n\n")
 
-            text_file.write("-------------------------------------\n")
-            text_file.write("Compared to year average\n")
-            text_file.write("Number of samples: %d\n" % year_sample)
-            text_file.write("Average: %g\n" % year_average)
-            text_file.write("Value deviation: %g\n" % year_value_dev)
-            text_file.write("-------------------------------------\n")
-            text_file.write("\n\n")
+                text_file.write("-------------------------------------\n")
+                text_file.write("Compared to year average\n")
+                text_file.write("Number of samples: %d\n" % year_sample)
+                text_file.write("Average: %g\n" % year_average)
+                text_file.write("Value deviation: %g\n" % year_value_dev)
+                text_file.write("-------------------------------------\n")
+                text_file.write("\n\n")
 
-            text_file.write("-------------------------------------\n")
-            text_file.write("Compared to lifespan average\n")
-            text_file.write("Number of samples: %d\n" % life_sample)
-            text_file.write("Average: %g\n" % life_average)
-            text_file.write("Value deviation: %g\n" % life_value_dev)
-            text_file.write("-------------------------------------\n")
-            text_file.write("\n\n")
+                text_file.write("-------------------------------------\n")
+                text_file.write("Compared to lifespan average\n")
+                text_file.write("Number of samples: %d\n" % life_sample)
+                text_file.write("Average: %g\n" % life_average)
+                text_file.write("Value deviation: %g\n" % life_value_dev)
+                text_file.write("-------------------------------------\n")
+                text_file.write("\n\n")
 
-            text_file.write("----------------------------/Data Driven Condition Monitoring [DDCM]----------------------------\n")
+                text_file.write("----------------------------/Data Driven Condition Monitoring [DDCM]----------------------------\n")
 
     date_file_loope += 1
 print("Complete!")
+with open("Query complete.txt", "w") as text_file:
+    text_file.write("Finished searching through database...\n")
