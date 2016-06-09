@@ -29,7 +29,7 @@ module.exports = function(app) {
         // req.body will hold the text fields, if there were any
         console.log(req.file); //form files
         var PythonShell = require('python-shell');
-        var pyshell = new PythonShell('file_validation.py');
+        var pyshell = new PythonShell('./python/file_validation.py');
         pyshell.on('message', function (message) {
   // received a message sent from the Python script (a simple "print" statement)
   console.log(message);
