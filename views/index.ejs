@@ -20,26 +20,21 @@
     <h1><span></span>Data Driven Condition Monitoring</h1>
 
 
-
-
     <div class="container">
 
         <div class="jumbotron text-center">
             <h1><span></span>Add to DB</h1>
 
-            <div>
-                <select name="projects">
-                    <option value="anone">Select project</option>
-                    <option value="PN1042">Edvard Grieg - PN1042</option>
-                </select>
-            </div>
             <input name="up_file" id="up_file" type="file" accept=".xlsx" />
+            <br>
+            <p id="file_status"></p>
             <br>
             <a href="../static/pi_data-jan2016.xlsx" download="Export template.xlsx">Download example file</a>
         </div>
 
         <script>
             $('#up_file').change(function(e) {
+                document.getElementById('file_status').innerHTML = "Checking file...."
                 var file = e.target.files[0];
                 var formData = new FormData();
                 formData.append('up_file', file);
@@ -50,7 +45,7 @@
                     processData: false, // tell jQuery not to process the data
                     contentType: false, // tell jQuery not to set contentType
                     success: function(data) {
-                        console.log(data);
+                        document.getElementById('file_status').innerHTML = data;
                     }
                 });
             })
@@ -61,8 +56,28 @@
     <div class="container">
         <div class="jumbotron text-center">
             <h1><span></span>Query DB</h1>
-            <input type="file" accept=".json" />
+            <button onclick="RemoveFiles();">Clean up files</button>
+            <input id="config_file" type="file" accept=".json" />
+            <p id="query_status"></p>
             <a href="../static/DDCM_output.zip" download="Output files.zip">Download output files</a>
+            <script>
+                $('#config_file').change(function(e) {
+                    document.getElementById('query_status').innerHTML = "Searching database...."
+                    var file = e.target.files[0];
+                    var formData = new FormData();
+                    formData.append('config_file', file);
+                    return $.ajax({
+                        url: '/config_upload',
+                        type: 'POST',
+                        data: formData,
+                        processData: false, // tell jQuery not to process the data
+                        contentType: false, // tell jQuery not to set contentType
+                        success: function(data) {
+                            document.getElementById('query_status').innerHTML = data;
+                        }
+                    });
+                })
+            </script>
             <div>
             </div>
 
