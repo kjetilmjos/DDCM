@@ -28,12 +28,15 @@
             <br>
             <p id="file_status"></p>
             <br>
-            <a href="../static/pi_data-jan2016.xlsx" download="Export template.xlsx">Download example file</a>
+            <button onclick="Generate_CSV();">Generate csv file</button><p id="parse_status"></p><br>
+
+            <button>Store CSV file permanent to database</button><br>
+              <a href="../static/pi_data-jan2016.xlsx" download="Export template.xlsx">Download example file</a>
         </div>
 
         <script>
             $('#up_file').change(function(e) {
-                document.getElementById('file_status').innerHTML = "Checking file...."
+                document.getElementById('file_status').innerHTML = "Checking file....";
                 var file = e.target.files[0];
                 var formData = new FormData();
                 formData.append('up_file', file);
@@ -45,6 +48,7 @@
                     contentType: false, // tell jQuery not to set contentType
                     success: function(data) {
                         document.getElementById('file_status').innerHTML = data;
+
                     }
                 });
             })
