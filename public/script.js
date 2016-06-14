@@ -9,6 +9,22 @@ function RemoveFiles(){
   });
 
 }
+
+function Generate_CSV(){
+  document.getElementById('parse_status').innerHTML = "Parsing file, grab a coffee....";
+  return $.ajax({
+      url: '/generate_csv',
+      type: 'POST',
+      data: "post",
+      success: function(data) {
+          document.getElementById('parse_status').innerHTML = data;
+      }
+  });
+
+}
+
+
+
 //function validate() {
 
   //  var fullPath = document.getElementById('excel_upload_file').value;
