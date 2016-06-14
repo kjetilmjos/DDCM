@@ -13,7 +13,7 @@ reference_date = []
 Date_for_file = []
 files = []
 
-with open('CONFIG_query.json', 'r') as f:
+with open('./upload/CONFIG_query.json', 'r') as f: # change config path if running locally
     config = json.load(f)
 
 for taggiser in config['tags']:
@@ -264,13 +264,14 @@ for date_loop in reference_date:
                 text_file.write("----------------------------/Data Driven Condition Monitoring [DDCM]----------------------------\n")
 
     date_file_loope += 1
-print("Complete!")
+
 with open("Query complete.txt", "w") as text_file:
     text_file.write("Finished searching through database...\n")
 os.chdir("./")
 for file in glob.glob("*.txt"):
     files.append(file)
 
-with zipfile.ZipFile('../public/DDCM_output.zip', 'w') as myzip:
+with zipfile.ZipFile('./public/DDCM_output.zip', 'w') as myzip:
     for filer in files:
         myzip.write(filer)
+print("Query complete!")
