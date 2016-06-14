@@ -1,4 +1,14 @@
+function RemoveFiles(){
+  return $.ajax({
+      url: '/cleanup_files',
+      type: 'POST',
+      data: "post",
+      success: function(data) {
+            alert(data);
+      }
+  });
 
+}
 //function validate() {
 
   //  var fullPath = document.getElementById('excel_upload_file').value;
