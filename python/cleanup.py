@@ -12,6 +12,10 @@ try:
     os.remove('./public/DDCM_output.zip') # change to . when using node.js
 except:
     next
+    try:
+        os.remove('./Parser_output.csv') # change to . when using node.js
+    except:
+        next
 
 try:
     filelist = [ f for f in os.listdir("./") if f.endswith(".txt") ]
