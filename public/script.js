@@ -36,6 +36,10 @@ function Store_to_DB(){
 
 }
 
+function execute(){
+alert(document.getElementById('start_date').value);
+
+}
 
 
 //function validate() {
