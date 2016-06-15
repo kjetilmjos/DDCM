@@ -40,6 +40,8 @@ date_file_loope= 0
 for date_loop in reference_date:
     for tag_loop in TAG:
         no_print = 0
+        # finn siste gyldige dato før datoen i lista. Denne  må brukes i query ref MW og timedelta substraktsjon mindre eller lik kan brukes på søket
+
         query_reference_MW = collection_values.find({u'tag' : MW_tag, u'date' : date_loop})
         reference_MW = query_reference_MW[0][u'value']
 
