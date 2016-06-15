@@ -1,13 +1,19 @@
 <!doctype html>
 <html>
-<link type="text/css" rel="stylesheet" href="../static/style.css" />
+
 <script src="../static/script.js"></script>
 <script src="../static/jquery.js"></script>
+<script type="text/javascript" src="../static/bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="../static/bootstrap-3.3.6/js/bootstrap.js"></script>
+<script type="text/javascript" src="../static/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+
 
 <head>
     <title>Data Drive Condition Monitoring</title>
-    <link rel="stylesheet" href="../static/boostrap_min.css">
-    <link rel="stylesheet" href="../static/font.css">
+    <link type="text/css" rel="stylesheet" href="../static/style.css" />
+    <link rel="stylesheet" href="../static/bootstrap-3.3.6/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
     <style>
         body {
             padding-top: 80px;
@@ -16,6 +22,8 @@
 </head>
 
 <body>
+
+
     <h1><span></span>Data Driven Condition Monitoring</h1>
 
 
@@ -23,16 +31,43 @@
 
         <div class="jumbotron text-center">
             <h1><span></span>Add to DB</h1>
+            <div style="overflow:hidden;">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div id="datetimepicker12"></div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(function() {
+                        var tmp = document.getElementById('dates').innerHTML.split(",");
+                        $('#datetimepicker12').datetimepicker({
+                            inline: true,
+                            format: "yyyy-mm-dd",
+                            enabledDates: tmp
+                        });
+                    });
+                </script>
+            </div>
+            <p hidden id="dates">
+                <%= allowed_dates %>
+            </p>
+
 
             <input name="up_file" id="up_file" type="file" accept=".xlsx" />
             <br>
             <p id="file_status"></p>
             <br>
-            <button onclick="Generate_CSV();">Generate csv file</button><p id="parse_status"></p><br>
+            <button onclick="Generate_CSV();">Generate csv file</button>
+            <p id="parse_status"></p>
+            <br>
 
-            <button onclick="Store_to_DB();">Store CSV file permanent to database</button><br>
-            <p id="db_storage_status"></p><br>
-              <a href="../static/pi_data-jan2016.xlsx" download="Export template.xlsx">Download example file</a>
+            <button onclick="Store_to_DB();">Store CSV file permanent to database</button>
+            <br>
+            <p id="db_storage_status"></p>
+            <br>
+            <a href="../static/pi_data-jan2016.xlsx" download="Export template.xlsx">Download example file</a>
         </div>
 
         <script>
@@ -61,8 +96,56 @@
         <div class="jumbotron text-center">
             <h1><span></span>Query DB</h1>
             <button onclick="RemoveFiles();">Clean up files</button>
+            <div class="container">
+                <div class='col-md-5'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker6'>
+                            <input type='text' class="form-control" id="start_date" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-md-5'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker7'>
+                            <input type='text' class="form-control" id="end_date" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(function() {
+                  var tmp = document.getElementById('dates').innerHTML.split(",");
+                    $('#datetimepicker6').datetimepicker({
+                        defaultDate: Date.now(),
+                        format: 'YYYY-MM-DD HH:MM:SS',
+                        enabledDates: tmp
+                    });
+                    $('#datetimepicker7').datetimepicker({
+                        defaultDate: Date.now(),
+                        format: 'YYYY-MM-DD HH:MM:SS',
+                        enabledDates: tmp,
+                        useCurrent: false //Important! See issue #1075
+                    });
+                    $("#datetimepicker6").on("dp.change", function(e) {
+                        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+                    });
+                    $("#datetimepicker7").on("dp.change", function(e) {
+                        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+                    });
+                });
+            </script>
+
+            <br>
             <input id="config_file" type="file" accept=".json" />
             <p id="query_status"></p>
+            <button onclick="execute();">Execute query</button>
+            <br>
             <a href="../static/DDCM_output.zip" download="Output files.zip">Download output files</a>
             <script>
                 $('#config_file').change(function(e) {
@@ -84,8 +167,6 @@
             </script>
             <div>
             </div>
-
-
 
 
 </body>
