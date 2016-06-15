@@ -120,4 +120,25 @@ module.exports = function(app) {
 
 
     })
+    app.post('/store_data', function(req, res) {
+        // req.file is the `avatar` file
+        // req.body will hold the text fields, if there were any
+
+        var PythonShell = require('python-shell');
+        var pyshell = new PythonShell('./python/mongodb_datapusher.py');
+        var msgg = "";
+        pyshell.on('message', function(message) {
+            // received a message sent from the Python script (a simple "print" statement)
+            console.log(message);
+            msgg = message;
+        });
+        // end the input stream and allow the process to exit
+        pyshell.end(function(err) {
+            if (err) throw err;
+            console.log('finished');
+            res.send(msgg);
+        });
+
+
+    })
 }
