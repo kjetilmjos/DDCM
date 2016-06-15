@@ -30,7 +30,7 @@ with open('Parser_output.csv') as csvfile:
 
 x = 0
 while x < len(list_date):
-    insert = db.values.insert_one(
+    insert = db.test.insert_one(
     {
         "date": dateutil.parser.parse(list_date[x]),
         "description": list_description[x],
@@ -39,3 +39,5 @@ while x < len(list_date):
         "value": float(list_value[x]),
         })
     x += 1
+
+print("Data storing complete!")
