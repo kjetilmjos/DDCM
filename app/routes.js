@@ -32,7 +32,26 @@ module.exports = function(app) {
     // normal routes ===============================================================
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.render('index.ejs');
+
+        var PythonShell = require('python-shell');
+        var pyshell = new PythonShell('./python/dates_query.py');
+        var mssg = [];
+        pyshell.on('message', function(message) {
+            // received a message sent from the Python script (a simple "print" statement)
+
+            mssg = message.split(",");
+        
+        });
+
+        // end the input stream and allow the process to exit
+        pyshell.end(function(err) {
+            if (err) throw err;
+            console.log('finished');
+            res.render('index.ejs', {
+                'allowed_dates': mssg
+            });
+        });
+
     });
 
     app.post('/data-export', upload.single('up_file'), function(req, res) {
@@ -55,7 +74,7 @@ module.exports = function(app) {
             res.send(mssg);
         });
 
-    })
+    });
     app.post('/config_upload', upload_config.single('config_file'), function(req, res) {
         // req.file is the `avatar` file
         // req.body will hold the text fields, if there were any
@@ -76,7 +95,7 @@ module.exports = function(app) {
         });
 
 
-    })
+    });
 
     app.post('/cleanup_files', function(req, res) {
         // req.file is the `avatar` file
@@ -98,7 +117,7 @@ module.exports = function(app) {
         });
 
 
-    })
+    });
     app.post('/generate_csv', function(req, res) {
         // req.file is the `avatar` file
         // req.body will hold the text fields, if there were any
@@ -119,7 +138,7 @@ module.exports = function(app) {
         });
 
 
-    })
+    });
     app.post('/store_data', function(req, res) {
         // req.file is the `avatar` file
         // req.body will hold the text fields, if there were any
