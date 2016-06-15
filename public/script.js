@@ -23,6 +23,19 @@ function Generate_CSV(){
 
 }
 
+function Store_to_DB(){
+  document.getElementById('db_storage_status').innerHTML = "Storing data, 2sec....";
+  return $.ajax({
+      url: '/store_data',
+      type: 'POST',
+      data: "post",
+      success: function(data) {
+          document.getElementById('db_storage_status').innerHTML = data;
+      }
+  });
+
+}
+
 
 
 //function validate() {
