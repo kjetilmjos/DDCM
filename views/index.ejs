@@ -3,11 +3,11 @@
 
 <script src="../static/script.js"></script>
 <script src="../static/jquery.js"></script>
+
 <script type="text/javascript" src="../static/bower_components/moment/min/moment.min.js"></script>
+<script src="../static/twix.js"></script>
 <script type="text/javascript" src="../static/bootstrap-3.3.6/js/bootstrap.js"></script>
 <script type="text/javascript" src="../static/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-
-
 
 <head>
     <title>Data Drive Condition Monitoring</title>
@@ -95,7 +95,8 @@
     <div class="container">
         <div class="jumbotron text-center">
             <h1><span></span>Query DB</h1>
-            <button onclick="RemoveFiles();">Clean up files</button>
+            <button onclick="RemoveFiles();">Clean up files</button><br>
+              <input id="config_file" type="file" accept=".json" />
             <div class="container">
                 <div class='col-md-5'>
                     <div class="form-group">
@@ -142,14 +143,17 @@
             </script>
 
             <br>
-            <input id="config_file" type="file" accept=".json" />
-            <p id="query_status"></p>
+
+
+            <button onclick="generate_config();">Generate config file</button><br>
+              <p id="config_status"></p>
             <button onclick="execute();">Execute query</button>
+            <p id="query_status"></p>
             <br>
             <a href="../static/DDCM_output.zip" download="Output files.zip">Download output files</a>
             <script>
                 $('#config_file').change(function(e) {
-                    document.getElementById('query_status').innerHTML = "Searching database...."
+                  //  document.getElementById('query_status').innerHTML = "Generating config file...."
                     var file = e.target.files[0];
                     var formData = new FormData();
                     formData.append('config_file', file);
@@ -160,7 +164,7 @@
                         processData: false, // tell jQuery not to process the data
                         contentType: false, // tell jQuery not to set contentType
                         success: function(data) {
-                            document.getElementById('query_status').innerHTML = data;
+                          //  document.getElementById('query_status').innerHTML = data;
                         }
                     });
                 })
