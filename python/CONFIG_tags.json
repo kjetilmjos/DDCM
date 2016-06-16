@@ -1,0 +1,27 @@
+{
+    "MW_tag": "EG_80JT6653.Y(6)",
+    "MW_hysteres": 2.5,
+    "noprint_limit": 1.1,
+    "tags": [{
+        "tag": "EG_80TE6058A.Y"
+    }, {
+        "tag": "EG_80TE6058B.Y"
+    },{
+        "tag": "EG_80TE6059A.Y"
+    }, {
+        "tag": "EG_80TE6059B.Y"
+    },{
+        "tag": "EG_80TE6060A.Y"
+    }, {
+        "tag": "EG_80TE6060B.Y"
+    },{
+        "tag": "EG_80TE6061A.Y"
+    }, {
+        "tag": "EG_80TE6061B.Y"
+    },{
+        "tag": "EG_80TE6062A.Y"
+    }, {
+        "tag": "EG_80TE6062B.Y"
+    }
+  ]
+}
