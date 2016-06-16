@@ -1,3 +1,5 @@
+#db.posts.find( //query today up to tonight
+  #{"created_on": {"$gte": new Date(2012, 7, 14), "$lt": new Date(2012, 7, 15)}})
 
 # -*- coding: utf-8 -*-
 import pymongo

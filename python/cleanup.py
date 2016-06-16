@@ -16,7 +16,18 @@ except:
         os.remove('./Parser_output.csv') # change to . when using node.js
     except:
         next
-
+try:
+    os.remove('./upload/CONFIG_dates.json') # change to . when using node.js
+except:
+    next
+try:
+    os.remove('./upload/CONFIG_tags.json') # change to . when using node.js
+except:
+    next
+try:
+    os.remove('./upload/CONFIG_query.json') # change to . when using node.js
+except:
+    next
 try:
     filelist = [ f for f in os.listdir("./") if f.endswith(".txt") ]
     for f in filelist:
