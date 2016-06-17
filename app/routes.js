@@ -78,8 +78,8 @@ module.exports = function(app) {
     app.post('/config_upload', upload_config.single('config_file'), function(req, res) {
         // req.file is the `avatar` file
         // req.body will hold the text fields, if there were any
-      //  console.log(req.file); //form files
-      res.send("");
+        //  console.log(req.file); //form files
+        res.send("");
 
 
     });
@@ -151,9 +151,18 @@ module.exports = function(app) {
     app.post('/generate_config', function(req, res) {
         var obje = req.body.dates;
         var file = './upload/CONFIG_dates.json';
+        var arr = [];
+        var tt = obje[0].date;
+        var date = moment(new Date(tt)).format('YYYY-MM-DD');
+
+        for (k = 0; k < obje.length; k++){
+            var tt = obje[k].date;
+            var date = moment(new Date(tt)).format('YYYY-MM-DD');
+            arr.push(date);
+        }
 
         var obj = {
-            dates: obje
+            dates: arr
         };
 
         jsonfile.writeFile(file, obj, function(err) {
