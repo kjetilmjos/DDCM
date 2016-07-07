@@ -45,8 +45,8 @@ for date_loop in reference_date:
         # finn siste gyldige dato før datoen i lista. Denne  må brukes i query ref MW og timedelta substraktsjon mindre eller lik kan brukes på søket
 
         query_reference_MW = collection_values.find({u'tag' : MW_tag, u'date' : date_loop})
-        # breaks loop if no values are found for that specific date
 
+        # breaks loop if no values are found for that specific date
         if query_reference_MW.count() == 0:
              break
         reference_MW = query_reference_MW[0][u'value']
