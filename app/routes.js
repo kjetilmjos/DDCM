@@ -157,8 +157,9 @@ module.exports = function(app) {
 
         for (k = 0; k < obje.length; k++){
             var tt = obje[k].date;
-            var date = moment(new Date(tt)).format('YYYY-MM-DD');
-            arr.push(date);
+            var daten = moment(new Date(tt)).format('YYYY-MM-DD');
+            var obb = {date: daten};
+            arr.push(obb);
         }
 
         var obj = {
