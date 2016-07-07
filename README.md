@@ -3,9 +3,10 @@ Data Driven Condition Monitoring
 
 Prerequisit:
 - MongoDB installed and running
-- Python 3 with the following libraries: 
+- Node.JS installed
+- Python 3 with the following libraries: <br>
      -pymongo (install with pip)
      -openpyxl (install with pip)
      -dateutil.parser 
-     -datetime timedelta 
+     -datetime
 
