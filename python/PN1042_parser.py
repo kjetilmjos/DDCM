@@ -42,7 +42,7 @@ while s < number_of_dates:
 
 #---------------------/Read columns and assign to arrays------------------------#
 
-with open('Parser_output.csv', 'w', newline='') as csvfile:
+with open('Parser_output.csv', 'w', 'utf-8') as csvfile:
     file_write = csv.writer(csvfile, delimiter= ',')
     kk = 0
     ff = 0
