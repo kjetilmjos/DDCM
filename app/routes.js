@@ -34,7 +34,7 @@ module.exports = function(app) {
     app.get('/', function(req, res) {
 
         var PythonShell = require('python-shell');
-        var pyshell = new PythonShell('./python/dates_query.py');
+        var pyshell = new PythonShell('./python/dates_query.py', {pythonPath: '/usr/bin/python3'});
         var mssg = [];
         pyshell.on('message', function(message) {
             // received a message sent from the Python script (a simple "print" statement)
@@ -59,7 +59,7 @@ module.exports = function(app) {
         // req.body will hold the text fields, if there were any
         console.log(req.file); //form files
         var PythonShell = require('python-shell');
-        var pyshell = new PythonShell('./python/file_validation.py');
+        var pyshell = new PythonShell('./python/file_validation.py', {pythonPath: '/usr/bin/python3'});
         var mssg = "";
         pyshell.on('message', function(message) {
             // received a message sent from the Python script (a simple "print" statement)
@@ -89,7 +89,7 @@ module.exports = function(app) {
         // req.body will hold the text fields, if there were any
 
         var PythonShell = require('python-shell');
-        var pyshell = new PythonShell('./python/cleanup.py');
+        var pyshell = new PythonShell('./python/cleanup.py', {pythonPath: '/usr/bin/python3'});
         var msgg = "";
         pyshell.on('message', function(message) {
             // received a message sent from the Python script (a simple "print" statement)
@@ -110,7 +110,7 @@ module.exports = function(app) {
         // req.body will hold the text fields, if there were any
 
         var PythonShell = require('python-shell');
-        var pyshell = new PythonShell('./python/PN1042_parser.py');
+        var pyshell = new PythonShell('./python/PN1042_parser.py', {pythonPath: '/usr/bin/python3'});
         var msgg = "";
         pyshell.on('message', function(message) {
             // received a message sent from the Python script (a simple "print" statement)
@@ -131,7 +131,7 @@ module.exports = function(app) {
         // req.body will hold the text fields, if there were any
 
         var PythonShell = require('python-shell');
-        var pyshell = new PythonShell('./python/mongodb_datapusher.py');
+        var pyshell = new PythonShell('./python/mongodb_datapusher.py', {pythonPath: '/usr/bin/python3'});
         var msgg = "";
         pyshell.on('message', function(message) {
             // received a message sent from the Python script (a simple "print" statement)
@@ -170,7 +170,7 @@ module.exports = function(app) {
             //  console.error(err)
         })
         var PythonShell = require('python-shell');
-        var pyshell = new PythonShell('./python/generate_config.py');
+        var pyshell = new PythonShell('./python/generate_config.py', {pythonPath: '/usr/bin/python3'});
         var msgg = "";
         pyshell.on('message', function(message) {
             // received a message sent from the Python script (a simple "print" statement)
@@ -190,7 +190,7 @@ module.exports = function(app) {
     app.post('/execute_query', function(req, res) {
 
         var PythonShell = require('python-shell');
-        var pyshell = new PythonShell('./python/mongodb_query.py');
+        var pyshell = new PythonShell('./python/mongodb_query.py', {pythonPath: '/usr/bin/python3'});
         var msgg = "";
         pyshell.on('message', function(message) {
             // received a message sent from the Python script (a simple "print" statement)
